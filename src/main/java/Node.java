@@ -1,14 +1,25 @@
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Node {
-    public final int index;
-    public List<Transition> possibleTransitions;
-    public Transition cheapestTransition;
-    public Node nextNode;
+    private final int index;
+    private List<Transition> possibleTransitions=new ArrayList<>();
+    private Transition cheapestTransition;
+    private Node nextNode;
 
     public Node(int index) {
         this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public Node getNextNode(){
+        return nextNode;
+    }
+    public List<Transition> getPossibleTransitions(){
+        return possibleTransitions;
     }
 
     public void setPossibleTransitions(List<Transition> transitionList) {
@@ -17,6 +28,10 @@ public class Node {
             setCheapestTransition();
             nextNode = cheapestTransition.targetNode;
         }
+    }
+
+    public Transition getCheapestTransition(){
+        return cheapestTransition;
     }
 
     private void setCheapestTransition(){
@@ -35,4 +50,5 @@ public class Node {
             this.cheapestTransition=minTransition;
         }
     }
+
 }
